@@ -1,0 +1,21 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# Allwinner sunXi SoC drivers
+#
+menu "GPU Power Domain Drivers"
+	depends on AW_BSP
+
+config AW_GPU_PM_DOMAINS
+	tristate "Allwinner GPU Power Domain"
+	depends on PM
+	select PM_GENERIC_DOMAINS
+	select PM_GENERIC_DOMAINS_OF
+	help
+	 Say y here to enable power domain support.
+	 In order to meet high performance and low power requirements, a power
+	 management unit is designed or saving power when gpu in low power
+	 mode. The PPU is dedicated for managing the power of the GPU.
+
+	 If unsure, say N.
+
+endmenu

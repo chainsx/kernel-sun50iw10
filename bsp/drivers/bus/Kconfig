@@ -1,0 +1,11 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menu "Bus Drivers"
+	depends on AW_BSP
+
+config AW_NSI
+	tristate "NSI Bus Support for Allwinner SoCs"
+	depends on AW_BSP
+	help
+	  Support the NSI bus driver for Allwinner platforms.
+
+endmenu

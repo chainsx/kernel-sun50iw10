@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+menu "CRASHDUMP Drivers"
+	depends on AW_BSP
+
+config AW_CRASHDUMP
+	tristate "Allwinner Crash Dump Support"
+	depends on ARCH_SUN8I || ARCH_SUN50I
+	default n
+	help
+	  Say Y here to enable the sunxi crash dump support.
+	  sunxi dump help to dump all dram area for crash tool.
+
+endmenu

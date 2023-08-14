@@ -1,0 +1,14 @@
+*.swp
+tags
+*.cpio.gz
+*.o.*
+*.o
+*.cmd.*
+*.mod
+*.mod.*
+*.order
+*.order.cmd
+Module.symvers
+.*Module.symvers.*
+*.ko
+*.ko.cmd

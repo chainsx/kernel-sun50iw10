@@ -1,0 +1,98 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menu "DRM Drivers"
+	depends on AW_BSP
+
+config AW_DRM
+	tristate "DRM Support for Allwinner SoCs"
+	depends on DRM && AW_BSP
+	select DRM_KMS_HELPER
+	default n
+
+config AW_DRM_IOMMU
+	bool "Support IOMMU when used the sunxi drm driver"
+	depends on AW_IOMMU
+	default n
+	help
+		If you want use IOMMU function, select it.
+
+config AW_DRM_DE_SUN50IW1
+	bool "Support DE of sun50iw1"
+	depends on AW_DRM
+	default n
+	help
+		If you want use DE of R18 serials, select it.
+
+config AW_DRM_DE_V2X
+	bool "Support DE of Version 200"
+	depends on AW_DRM
+	default n
+	help
+		If you want use DE of Version 200, select it.
+
+config AW_DRM_DE_V3X
+	bool "Support DE of Version 300"
+	depends on AW_DRM
+	default n
+	help
+		If you want use DE of Version 300, select it.
+
+config AW_DRM_DE_V33X
+	bool "Support DE of Version 330"
+	depends on AW_DRM
+	default n
+	help
+		If you want use DE of Version 330, select it.
+
+menuconfig AW_DRM_LCD
+	bool "Support LCD Output"
+	depends on AW_DRM
+	default n
+	help
+		If you want lcd output for drm driver, select it.
+
+config AW_DRM_LCD_DSI
+	bool "Support LCD-DSI Output"
+	depends on AW_DRM_LCD
+	default n
+	help
+		If you want lcd-dsi output for drm driver, select it.
+
+config AW_DRM_LCD_EDP
+	bool "Support LCD-EDP Output"
+	depends on AW_DRM_LCD
+	default n
+	help
+		If you want lcd-edp output for drm driver, select it.
+
+config AW_DRM_HDMI14
+	bool "Support HDMI1.4 Output"
+	depends on AW_DRM
+	default n
+	help
+		If you want hdmi1.4 output for drm driver, select it.
+
+config AW_RM_HDMI20
+	bool "Support HDMI2.0 Output"
+	depends on AW_DRM
+	default n
+	help
+		If you want hdmi2.0 output for drm driver, select it.
+
+config AW_DRM_TV
+	bool "Support sunxi TV Output"
+	depends on AW_DRM
+	default n
+	help
+		If you want sunxi tv (CVBS, VGA and YPbPr) output for drm driver, select it.
+
+config AW_DRM_BACKLIGHT
+	bool "Support sunxi backlight"
+	depends on AW_DRM
+    select BACKLIGHT_CLASS_DEVICE
+	default n
+	help
+		If you want sunxi backlight for drm driver, select it.
+
+endmenu
+
+source "bsp/drivers/drm/sunxi_device/lcd_panel/Kconfig"

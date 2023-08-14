@@ -1,0 +1,105 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menu "Clock Drivers"
+	depends on AW_BSP
+
+config AW_CCU
+	tristate "Clock Support for Allwinner SoCs"
+	depends on AW_BSP
+	default y
+	select RESET_CONTROLLER
+	select AW_RTC_CCU
+
+config AW_CCU_DEBUG
+	tristate "DebugFS representation of clock tree"
+	default AW_CCU
+	depends on DEBUG_FS
+
+config AW_SUN8IW11_CCU
+	tristate "SUN8IW11 CCU"
+	default ARCH_SUN8IW11
+	depends on AW_CCU
+
+config AW_SUN8IW18_CCU
+	tristate "SUN8IW18 CCU"
+	default ARCH_SUN8IW18
+	depends on AW_CCU
+
+config AW_SUN8IW20_CCU
+	tristate "SUN8IW20 CCU"
+	default ARCH_SUN8IW20
+	depends on AW_CCU
+
+config AW_SUN8IW20_R_CCU
+	tristate "SUN8IW20 PRCM CCU"
+	default ARCH_SUN8IW20
+	depends on AW_CCU
+
+config AW_SUN50IW12_CCU
+	tristate "SUN50IW12 CCU"
+	default ARCH_SUN50IW12
+	depends on AW_CCU
+
+config AW_SUN50IW12_R_CCU
+	tristate "SUN50IW12 PRCM CCU"
+	default ARCH_SUN50IW12
+	depends on AW_CCU
+
+config AW_SUN50IW10_CCU
+	tristate "SUN50IW10 CCU"
+	default ARCH_SUN50IW10
+	depends on AW_CCU
+
+config AW_SUN50IW10_R_CCU
+	tristate "SUN50IW10 PRCM CCU"
+	default ARCH_SUN50IW10
+	depends on AW_CCU
+
+config AW_SUN50IW10_DDR_CCU
+	tristate "SUN50IW10_DDR_CCU"
+	default ARCH_SUN50IW10
+	depends on AW_CCU
+
+config AW_SUN50IW10_DISPLL
+	tristate "Support for the Allwinner SUN50IW10 DISPLL"
+	default ARCH_SUN50IW10
+	depends on AW_CCU
+
+config AW_SUN50IW9_CCU
+	tristate "SUN50IW9 CCU"
+	default ARCH_SUN50IW9
+	depends on AW_CCU
+
+config AW_SUN50IW9_R_CCU
+	tristate "SUN50IW9 PRCM CCU"
+	default ARCH_SUN50IW9
+	depends on AW_CCU
+
+config AW_SUN55IW3_CCU
+	tristate "SUN55IW3 CCU"
+	default ARCH_SUN55IW3
+	depends on AW_CCU
+
+config AW_SUN55IW3_R_CCU
+	tristate "SUN55IW3 PRCM CCU"
+	default ARCH_SUN55IW3
+	depends on AW_CCU
+
+config AW_SUN55IW3_DSP_CCU
+	tristate "SUN55IW3_DSP_CCU"
+	default ARCH_SUN55IW3
+	depends on AW_CCU
+
+config AW_SUN55IW2_CCU
+	tristate "SUN55IW2 CCU"
+	default ARCH_SUN55IW2
+	depends on AW_CCU
+
+config AW_RTC_CCU
+	tristate "RTC domain clocks"
+	default y
+	help
+	  sunxi clock provider in RTC domain, which provides clocks such as
+	  dcxo24M-out, iosc, osc32k, osc32k-out and rtc-1k. This module is
+	  mandatory for sunxi SoCs. Say 'Y' here.
+
+endmenu
