@@ -9,7 +9,8 @@
 #include "sun50i-r818.dtsi"
 
 /{
-	model = "sun50iw10";
+	model = "DshanPI-ROSx";
+	board = "R818";
 	compatible = "allwinner,a100", "arm,sun50iw10p1";
 
 	aliases {
@@ -219,7 +220,7 @@
 	/*vqmmc-supply = <&reg_aldo1>;*/
 	/*emmc io vol 1.8v*/
 	vqmmc-supply = <&reg_cldo1>;
-	status = "disabled";
+	status = "okay";
 };
 
 &sdc0 {

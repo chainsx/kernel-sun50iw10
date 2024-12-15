@@ -94,3 +94,6 @@ obj-y += remoteproc/
 
 # Open source GPU
 obj-y += gpu/panfrost/
+
+KBUILD_CFLAGS	+= -Wno-implicit-fallthrough
+KBUILD_CFLAGS	+= -Wno-array-parameter
