@@ -33,9 +33,11 @@
 		serial7 = &uart7;
 		lcd0 = &lcd0;
 		lcd1 = &lcd1;
-		/*mmc0 = &sdc0;
-		mmc2 = &sdc2;*/
+		mmc0 = &sdc0;
+		mmc1 = &sdc1;
+		mmc2 = &sdc2;
 		sunxi-mmc0 = &sdc0;
+		sunxi-mmc1 = &sdc1;
 		sunxi-mmc2 = &sdc2;
 		nand0 =&nand0;
 		twi0 = &twi0;
