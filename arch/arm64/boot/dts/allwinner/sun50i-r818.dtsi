@@ -77,12 +77,6 @@
 		};
 	};
 
-	chosen {
-		bootargs = "earlyprintk=sunxi-uart,0x05000000 loglevel=8 initcall_debug=0 console=ttyS0 init=/init";
-		linux,initrd-start = <0x0 0x0>;
-		linux,initrd-end = <0x0 0x0>;
-	};
-
 	firmware {
 		android {
 			compatible = "android,firmware";
