@@ -13,7 +13,7 @@
 #include <dt-bindings/gpio/sun4i-gpio.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/thermal/thermal.h>
-#include "sun50i-r818-clk.dtsi"
+#include "sun50iw10p1-clk.dtsi"
 
 / {
 	model = "sun50iw10";
@@ -33,9 +33,8 @@
 		serial7 = &uart7;
 		lcd0 = &lcd0;
 		lcd1 = &lcd1;
-		mmc0 = &sdc0;
-		mmc1 = &sdc1;
-		mmc2 = &sdc2;
+		/*mmc0 = &sdc0;
+		mmc2 = &sdc2;*/
 		sunxi-mmc0 = &sdc0;
 		sunxi-mmc1 = &sdc1;
 		sunxi-mmc2 = &sdc2;
@@ -1928,6 +1927,21 @@
 			pinctrl-names = "active","sleep";
 		};
 
+		mdio0: mdio0@5020048 {
+                        compatible = "allwinner,sunxi-mdio";
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+                        reg = <0x0 0x05020048 0x0 0x8>;
+                        gmac0_phy0: ethernet-phy@1 {
+                                reg = <1>;
+                                max-speed = <1000>;  /* Max speed capability */
+                                reset-gpios = <&pio PH 10 GPIO_ACTIVE_LOW>;
+                                /* PHY datasheet rst time */
+                                reset-assert-us = <10000>;
+                                reset-deassert-us = <15000>;
+                        };
+                };
+
 		gmac0: eth@5020000 {
 			compatible = "allwinner,sunxi-gmac";
 			reg = <0x0 0x05020000 0x0 0x10000>,
@@ -1935,14 +1949,19 @@
 			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
 			interrupt-names = "gmacirq";
 			clocks = <&ccu CLK_BUS_EMAC0>, <&ccu CLK_EMAC0_25M>;
-			clock-names = "gmac", "ephy";
+			//clock-names = "gmac", "ephy";
+			clock-names = "gmac", "phy25m";
 			resets = <&ccu RST_BUS_EMAC0>;
 			device-type = "gmac0";
+			phy-handle = <&gmac0_phy0>;
+			pinctrl-0 = <&gmac_pins_a>;
+        		pinctrl-1 = <&gmac_pins_b>;
+        		pinctrl-names = "default", "sleep";
 			phy-mode;
 			phy-rst;
-			gmac-power0;
-			gmac-power1;
-			gmac-power2;
+			//gmac-power0;
+			//gmac-power1;
+			//gmac-power2;
 			status = "disabled";
 		};
 
@@ -2468,13 +2487,13 @@
 			};
 
 			twi0_pins_a: twi0@0 {
-				pins = "PH0", "PH1";
+				pins = "PD22", "PD23";
 				function = "twi0";
 				drive-strength = <10>;
 			};
 
 			twi0_pins_b: twi0@1 {
-				pins = "PH0", "PH1";
+				pins = "PD22", "PD23";
 				function = "gpio_in";
 			};
 
