@@ -6,7 +6,7 @@
 
 /dts-v1/;
 
-#include "sun50iw10p1.dtsi"
+#include "sun50i-r818.dtsi"
 
 /{
 	model = "DshanPI-ROSx";
