@@ -13,7 +13,7 @@
 #include <dt-bindings/gpio/sun4i-gpio.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/thermal/thermal.h>
-#include "sun50iw10p1-clk.dtsi"
+#include "sun50i-r818-clk.dtsi"
 
 / {
 	model = "sun50iw10";
