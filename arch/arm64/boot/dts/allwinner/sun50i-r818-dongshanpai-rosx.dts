@@ -213,8 +213,8 @@
 	phy-mode = "rgmii";
 	use_ephy25m = <0>;
 	sunxi,phy-clk-type =<0>;
-	tx-delay = <0>;
-	rx-delay = <0>;
+	tx-delay = <7>;
+	rx-delay = <31>;
 	status = "okay";
 };
 
