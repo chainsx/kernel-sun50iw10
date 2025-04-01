@@ -1,0 +1,138 @@
+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+/*
+ * Copyright (C) 2022 liujaun1@allwinnertech.com
+ */
+
+#include <dt-bindings/clock/sun55iw2-ccu.h>
+#include <dt-bindings/reset/sun55iw2-ccu.h>
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/gpio/sun4i-gpio.h>
+#include <dt-bindings/interrupt-controller/arm-gic.h>
+#include <dt-bindings/thermal/thermal.h>
+
+/ {
+	interrupt-parent = <&gic>;
+	#address-cells = <2>;
+	#size-cells = <2>;
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a55";
+			reg = <0x0>;
+		};
+	};
+
+	dcxo24M: dcxo24M_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <24000000>;
+		clock-output-names = "dcxo24M";
+	};
+
+	sys24M: sys24M_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <24000000>;
+		clock-output-names = "sys24M";
+	};
+
+	rc_16m: rc16m_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <16000000>;
+		clock-accuracy = <300000000>;
+		clock-output-names = "rc-16m";
+	};
+
+	ext_32k: ext32k_clk {
+		#clock-cells = <0>;
+		compatible = "fixed-clock";
+		clock-frequency = <32768>;
+		clock-output-names = "ext-32k";
+	};
+
+	gic: interrupt-controller@3400000 {
+		compatible = "arm,gic-v3";
+		#interrupt-cells = <3>;
+		#address-cells = <0>;
+		interrupt-controller;
+		reg = <0x0 0x03400000 0 0x10000>, /* GIC Dist */
+		      <0x0 0x03480000 0 0xFF004>; /* GIC Re */
+	};
+
+	timer_arch {
+		compatible = "arm,armv8-timer";
+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+			   <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+			   <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+			   <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+		clock-frequency = <24000000>;
+		interrupt-parent = <&gic>;
+		arm,no-tick-in-suspend;
+	};
+
+	soc: soc@2002000 {
+		compatible = "simple-bus";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+		device_type = "soc";
+
+		ccu: clock@2002000 {
+			compatible = "allwinner,sun55iw2-ccu";
+			reg = <0x0 0x02002000 0x0 0x1ff0>;
+			#clock-cells = <1>;
+			#reset-cells = <1>;
+		};
+
+		pio: pinctrl@2000000 {
+			compatible = "allwinner,sun55iw2-pinctrl";
+			reg = <0x0 0x02000000 0x0 0x600>;
+			interrupts = <GIC_SPI 67 IRQ_TYPE_LEVEL_HIGH>,  /* AW1885_GIC_Spec: GPIOA_NS: 99-32=67 */
+				   <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
+				   <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
+			clocks = <&ccu CLK_APB1>, <&dcxo24M>, <&ext_32k>;
+			clock-names = "apb", "hosc", "losc";
+			device_type = "pio";
+			gpio-controller;
+			interrupt-controller;
+			#interrupt-cells = <3>;
+			#address-cells = <0>;
+			#gpio-cells = <3>;
+			input-debounce = <0 0 0 0 1 0 0 0 0>;
+
+		};
+
+		dump_reg:dump_reg@40000 {
+			 compatible = "allwinner,sunxi-dump-reg";
+			 reg = <0x0 0x00044000 0x0 0x0004>;
+		};
+
+		uart0: uart@2500000 {
+			compatible = "allwinner,sun50i-uart";
+			device_type = "uart0";
+			reg = <0x0 0x02500000 0x0 0x400>;
+			interrupts = <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
+			sunxi,uart-fifosize = <64>;
+			clocks = <&ccu CLK_UART0>;
+			clock-names = "uart0";
+			resets = <&ccu RST_BUS_UART0>;
+			uart0_port = <0>;
+			uart0_type = <2>;
+			status = "okay";
+		};
+
+	};
+};

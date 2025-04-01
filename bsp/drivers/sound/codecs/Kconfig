@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: GPL-2.0-or-later
+#
+# Allwinner audio codecs driver Kconfig
+#
+# Copyright(c) 2022-2027 Allwinnertech Co., Ltd.
+
+menu "CODEC drivers"
+
+config SND_SOC_AC107
+	tristate "Allwinner AC107 CODEC"
+	depends on I2C
+	default n
+	help
+	  Enable support for the Allwinner AC107 CODEC.
+	  The device provides a I2S/TDM/PDM interface for audio data
+	  and a standard I2C interface for control data communication.
+	  Select this if your sound card has AC107.
+
+endmenu

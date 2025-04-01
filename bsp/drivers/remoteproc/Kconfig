@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: GPL-2.0-only
+#
+# Allwinner remoteproc driver.
+#
+menu "Remoteproc drivers"
+	depends on AW_BSP
+
+config AW_REMOTEPROC
+	tristate "Remoteproc Support for Allwinner SoCs"
+	depends on AW_BSP
+	select REMOTEPROC
+	select MAILBOX
+	help
+	  allwinner
+
+choice
+	prompt "Allwinner remoteproc boot select"
+config AW_REMOTEPROC_HIFI4_BOOT
+	tristate "Allwinner remoteproc hifi4 boot"
+	depends on AW_REMOTEPROC
+	help
+	  Say y here to support Allwinner SOC processors hifi4 via
+	  remote processor framework.
+
+config AW_REMOTEPROC_E906_BOOT
+	tristate "Allwinner remoteproc e906 boot"
+	depends on AW_REMOTEPROC
+	help
+	  Say y here to support Allwinner SOC processors e906 via
+	  remote processor framework.
+endchoice
+
+endmenu

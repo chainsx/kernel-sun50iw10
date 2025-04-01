@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: GPL-2.0-only
+menu "Thermal Drivers"
+	depends on AW_BSP
+
+config AW_THERMAL
+	tristate "Allwinner Thermal Driver"
+	depends on AW_BSP
+	depends on HAS_IOMEM
+	depends on NVMEM
+	depends on OF
+	select THERMAL
+	help
+	  Support for the sunxi thermal sensor driver into the Linux thermal
+	  framework.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called sunxi-thermal.
+
+endmenu
+

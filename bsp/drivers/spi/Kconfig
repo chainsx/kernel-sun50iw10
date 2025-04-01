@@ -1,0 +1,14 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+menu "SPI Drivers"
+	depends on AW_BSP
+
+config AW_SPI
+	tristate "SPI Support for Allwinner SoCs"
+	depends on AW_BSP && OF
+	select SPI
+	help
+	  Enable SPI controllers on Allwinner SoCs.
+
+endmenu
+

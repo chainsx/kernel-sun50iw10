@@ -162,6 +162,3 @@ x509.genkey
 
 # Documentation toolchain
 sphinx_*/
-
-# Independent BSP repo (Symlinks)
-bsp

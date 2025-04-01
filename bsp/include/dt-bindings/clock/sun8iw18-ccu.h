@@ -1,0 +1,106 @@
+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+/*
+ * Copyright (C) 2022 rengaomin@allwinnertech.com
+ */
+
+#ifndef _DT_BINDINGS_CLK_SUN8IW18_H_
+#define _DT_BINDINGS_CLK_SUN8IW18_H_
+
+#define CLK_PLL_CPU0		0
+#define CLK_PLL_DDR		1
+#define CLK_PLL_PERI0_PARENT	2
+#define CLK_PLL_PERI0_2X	3
+#define CLK_PLL_PERI0_DIV3	4
+#define CLK_PLL_PERI0_800M	5
+#define CLK_PLL_PERI0_480M	6
+#define CLK_PLL_PERI0_600M	7
+#define CLK_PLL_PERI0_400M	8
+#define CLK_PLL_PERI0_300M	9
+#define CLK_PLL_PERI0_200M	10
+#define CLK_PLL_PERI0_160M	11
+#define CLK_PLL_PERI0_16M	12
+#define CLK_PLL_PERI0_150M	13
+#define CLK_PLL_PERI0_25M	14
+#define CLK_PLL_PERI1_PARENT	15
+#define CLK_PLL_PERI1_2X	16
+#define CLK_PLL_PERI1_800M	17
+#define CLK_PLL_PERI1_480M	18
+#define CLK_PLL_PERI1_600M	19
+#define CLK_PLL_PERI1_400M	20
+#define CLK_PLL_PERI1_300M	21
+#define CLK_PLL_PERI1_200M	22
+#define CLK_PLL_PERI1_160M	23
+#define CLK_PLL_PERI1_150M	24
+#define CLK_PLL_AUDIO0_4X	25
+#define CLK_PLL_AUDIO0_2X	26
+#define CLK_PLL_32K_CTRL	27
+#define CLK_PLL_DDR_PAT_CTRL	28
+#define CLK_CPUX_AXI_CFG	29
+#define CLK_PSI_AHB1_AHB2	30
+#define CLK_AHB3		31
+#define CLK_APB1		32
+#define CLK_APB2		33
+#define CLK_CE			34
+#define CLK_CE_BUS		35
+#define CLK_DMA_BUS		36
+#define CLK_HSTIMER_BUS		37
+#define CLK_AVS			38
+#define CLK_DBGSYS		39
+#define CLK_PSI			40
+#define CLK_PWM			41
+#define CLK_DRAM		42
+#define CLK_NAND0_GATING	43
+#define CLK_CE_GATING		44
+#define CLK_DMA_GATING		45
+#define CLK_DRAM_BUS		46
+#define CLK_NAND0_0		47
+#define CLK_NAND0_1		48
+#define CLK_NAND0_BUS		49
+#define CLK_SMHC1		50
+#define CLK_SMHC2_GATING	51
+#define CLK_SMHC1_GATING	52
+#define CLK_SMHC0_GATING	53
+#define CLK_UART3		54
+#define CLK_UART2		55
+#define CLK_UART1		56
+#define CLK_UART0		57
+#define CLK_TWI2		58
+#define CLK_TWI1		59
+#define CLK_TWI0		60
+#define CLK_SPI0		61
+#define CLK_SPI1		62
+#define CLK_SPI1_GATING		63
+#define CLK_SPI0_GATING		64
+#define CLK_GPADC_BUS		65
+#define CLK_THS_BUS		66
+#define CLK_I2S_PCM0		67
+#define CLK_I2S_PCM1		68
+#define CLK_I2S_PCM2		69
+#define CLK_I2S_PCM0_GATING	70
+#define CLK_I2S_PCM1_GATING	71
+#define CLK_I2S_PCM2_GATING	72
+#define CLK_SPDIF		73
+#define CLK_SPDIF_GATING	74
+#define CLK_DMIC		75
+#define CLK_DMIC_GATING		76
+#define CLK_AUDIO_CODEC_1X	77
+#define CLK_AUDIO_CODEC_4X	78
+#define CLK_AUDIO_CODEC		79
+#define CLK_USB0		80
+#define CLK_USBPHY0		81
+#define CLK_USBOTG		82
+#define CLK_USBEHCI1		83
+#define CLK_USBEHCI0		84
+#define CLK_USBOHCI1		85
+#define CLK_USBOHCI0		86
+#define CLK_MAD_CFG		87
+#define CLK_MAD_AD		88
+#define CLK_MAD			89
+#define CLK_LPSD		90
+#define CLK_LEDC		91
+#define CLK_BUS_LEDC		92
+#define CLK_ACODEC_24M		93
+
+#define CLK_MAX_NO		(CLK_ACODEC_24M + 1)
+
+#endif /* _DT_BINDINGS_CLK_SUN8IW18_H_ */
